@@ -1,7 +1,7 @@
 {
   "name": "dsh-mengpo",
-  "version": "0.2.0",
-  "description": "梦婆·记忆 — DSH 记忆可视化/管理插件：右侧边栏查看全局与各项目记忆，支持编辑、删除、禁用 insight",
+  "version": "0.2.1",
+  "description": "梦婆·记忆 — DSH 本地记忆可视化管理插件：在「插件」页查看/编辑/删除/禁用全局记忆与各项目 insights",
   "icon": "icon.svg",
   "type": "module",
   "main": "lib/index.js",
@@ -41,10 +41,13 @@
   },
   "files": [
     "icon.svg",
+    "icon-512.png",
     "locale/*.json",
     "lib/*.js",
     "lib/types/**/*.d.ts",
-    "cordis.patch.yml"
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsup && tsc -p tsconfig.types.json",
@@ -63,5 +66,22 @@
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "dsh",
+    "memory",
+    "mengpo",
+    "insights"
+  ],
+  "author": "LogosFu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LogosFu/dsh-mengpo.git"
+  },
+  "homepage": "https://github.com/LogosFu/dsh-mengpo#readme",
+  "bugs": {
+    "url": "https://github.com/LogosFu/dsh-mengpo/issues"
   }
 }

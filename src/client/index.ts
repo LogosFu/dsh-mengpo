@@ -65,6 +65,7 @@ interface ClientContext {
   slots: {
     inject(key: string, callback: () => unknown): unknown;
     register(options: SlotEntryOptions, component: unknown): () => void;
+    entries(name: string): unknown[];
   };
   remote: MengpoRemote;
 }
@@ -128,6 +129,7 @@ export function apply(ctx: ClientContext): void {
     console.error('[dsh-mengpo] inject remote.mengpo fired');
     const scopedT = scoped.locale.bind(NS);
     const Page = createMemoryPage(scoped.remote.mengpo);
+    console.error('[dsh-mengpo] registering plugins.item card');
     scoped.effect(
       () =>
         scoped.slots.inject('plugins.item', () =>
@@ -144,6 +146,9 @@ export function apply(ctx: ClientContext): void {
           ),
         ),
       'dsh-mengpo: plugins page card',
+    );
+    console.error(
+      `[dsh-mengpo] plugins.item entries now: ${scoped.slots.entries('plugins.item').length}`,
     );
   });
 }
