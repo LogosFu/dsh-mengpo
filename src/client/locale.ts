@@ -3,6 +3,8 @@
 export const NS = 'mengpo';
 
 export const zh: Record<string, string> = {
+  'title': '梦婆·记忆',
+  'summary': '查看与管理 DSH 记忆：全局记忆（AGENTS.md）和各项目记忆库，支持编辑、删除、禁用 insight',
   'type.label': '梦婆·记忆',
   'guide.title': '记忆',
   'guide.description': '查看和管理全局与项目记忆',
@@ -53,6 +55,8 @@ export const zh: Record<string, string> = {
 };
 
 export const en: Record<string, string> = {
+  'title': 'Mengpo Memory',
+  'summary': 'DSH memory browser: global AGENTS.md plus every project memory store, with edit, delete and disable',
   'type.label': 'Mengpo Memory',
   'guide.title': 'Memory',
   'guide.description': 'View and manage global and project memory',

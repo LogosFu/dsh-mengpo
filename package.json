@@ -1,6 +1,6 @@
 {
   "name": "dsh-mengpo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "梦婆·记忆 — DSH 记忆可视化/管理插件：右侧边栏查看全局与各项目记忆，支持编辑、删除、禁用 insight",
   "icon": "icon.svg",
   "type": "module",
