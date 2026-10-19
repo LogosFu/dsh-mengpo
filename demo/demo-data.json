@@ -1,0 +1,112 @@
+{
+  "list": {
+    "projects": [
+      { "name": "shop-api", "path": "/Users/dev/code/shop-api", "insightCount": 6, "latestUpdatedAt": "2026-10-17T09:12:33.000Z", "status": "ok" },
+      { "name": "notes-app", "path": "/Users/dev/code/notes-app", "insightCount": 4, "latestUpdatedAt": "2026-10-15T15:40:21.000Z", "status": "ok" },
+      { "name": "data-pipeline", "path": "/Users/dev/code/data-pipeline", "insightCount": 3, "latestUpdatedAt": "2026-10-12T08:05:44.000Z", "status": "ok" },
+      { "name": "blog-web", "path": "/Users/dev/code/blog-web", "insightCount": 2, "latestUpdatedAt": "2026-10-08T11:22:09.000Z", "status": "ok" },
+      { "name": "sketch-lab", "path": "/Users/dev/code/sketch-lab", "insightCount": 0, "latestUpdatedAt": null, "status": "missing" }
+    ]
+  },
+  "project": {
+    "name": "shop-api",
+    "path": "/Users/dev/code/shop-api",
+    "status": "ok",
+    "insights": [
+      {
+        "id": "ins_demo_0001",
+        "kind": "lesson",
+        "scope": "project",
+        "title": "本地双 Postgres 抢 5432：localhost 连接落到了原生库",
+        "source": "agent",
+        "draft": false,
+        "confidence": 0.8,
+        "hitCount": 5,
+        "createdAt": "2026-10-10T08:04:14.267Z",
+        "updatedAt": "2026-10-10T08:04:14.267Z",
+        "pattern": "shop-api 本地起了两个 Postgres（原生 + docker），5432 被抢后 localhost 连接落到原生库，读不到 docker 库的数据",
+        "fix": "统一用 docker 库：docker 实例映射到 55432，应用侧用 SPRING_DATASOURCE_URL 覆盖指向它；启动前 lsof -iTCP:5432 确认归属",
+        "files": ["src/main/resources/application-local.yaml"],
+        "trigger": "启动本地 dev 环境时"
+      },
+      {
+        "id": "ins_demo_0002",
+        "kind": "decision",
+        "scope": "project",
+        "title": "对象存储私有桶方案：读时预签名 + 写入侧 key 归一化",
+        "source": "agent",
+        "draft": false,
+        "confidence": 0.9,
+        "hitCount": 3,
+        "createdAt": "2026-10-12T10:37:07.561Z",
+        "updatedAt": "2026-10-14T02:11:08.910Z",
+        "pattern": "图片附件既要私有（禁公网直链）又要前端可直接展示",
+        "fix": "桶设私有，读路径由后端签发短时效预签名 URL；写入侧统一 objectKey 归一化（模块前缀 + UUID），避免历史脏 key 泄露路径规律",
+        "trigger": "涉及附件/图片上传下载时"
+      },
+      {
+        "id": "ins_demo_0003",
+        "kind": "procedure",
+        "scope": "project",
+        "title": "发布前数据红线自查清单",
+        "source": "user",
+        "draft": false,
+        "confidence": 1.0,
+        "hitCount": 12,
+        "createdAt": "2026-09-28T03:18:02.000Z",
+        "updatedAt": "2026-10-16T07:55:41.000Z",
+        "pattern": "对外材料容易夹带内部代号、在谈客户名、供应商名",
+        "fix": "发布前按清单自查：① 客户名 ② 内部代号 ③ 供应商名 ④ CRUD 式罗列改写为业务价值 ⑤ 截图里的内部路径/域名",
+        "trigger": "写对外材料、发布开源仓库时"
+      },
+      {
+        "id": "ins_demo_0004",
+        "kind": "experience",
+        "scope": "project",
+        "title": "ECharts 实时曲线 appendData 静默不渲染",
+        "source": "agent",
+        "draft": false,
+        "confidence": 0.8,
+        "hitCount": 4,
+        "createdAt": "2026-10-13T09:30:00.000Z",
+        "updatedAt": "2026-10-13T09:30:00.000Z",
+        "pattern": "time 轴实时曲线用 appendData 追加点，画面不更新也不报错",
+        "fix": "改为整列 dataRef + setOption 整体替换；排障法：canvas getImageData 数彩色像素判断是否真绘制",
+        "files": ["web/src/components/RealtimeChart.tsx"]
+      },
+      {
+        "id": "ins_demo_0005",
+        "kind": "lesson",
+        "scope": "project",
+        "title": "前端调后端时间字段别用 toISOString()",
+        "source": "agent",
+        "draft": false,
+        "confidence": 0.8,
+        "hitCount": 2,
+        "createdAt": "2026-10-15T13:02:17.000Z",
+        "updatedAt": "2026-10-15T13:02:17.000Z",
+        "pattern": "后端接口是 LocalDateTime（无时区），前端用 toISOString() 会差 8 小时",
+        "fix": "本地时区格式化（YYYY-MM-DD HH:mm:ss）再提交，或前后端统一改 ISO 带偏移"
+      },
+      {
+        "id": "ins_demo_0006",
+        "kind": "lesson",
+        "scope": "project",
+        "title": "Vite manualChunks 拆 antd 子模块导致生产 TDZ 错误",
+        "source": "agent",
+        "draft": true,
+        "confidence": 0.7,
+        "hitCount": 2,
+        "createdAt": "2026-10-11T05:47:55.000Z",
+        "updatedAt": "2026-10-17T09:12:33.000Z",
+        "pattern": "手动把 antd 子模块拆 chunk 后，生产构建初始化顺序错乱报 TDZ",
+        "fix": "已废弃：撤掉手工 chunk 拆分，交给 Vite 默认策略（此条被禁用留存，防止回潮）",
+        "trigger": "配置构建拆包时"
+      }
+    ]
+  },
+  "global": {
+    "path": "/Users/dev/.dsh-beta/AGENTS.md",
+    "content": "# 全局约定\n\n## 沟通风格\n\n- 直接：一行问题一行答，不复述请求，不堆形容词\n- 完成的工作给短报告：改了什么、验证了什么、剩什么\n\n## 用户偏好\n\n- 架构性请求先出方案文档（现状/设计/改动清单/决策点含推荐值），拍板后再实施\n- 特性分支工作留在分支，main 保持稳定基线\n- 项目进度以代码仓库实际状态为准（git 历史/端点/测试数交叉核对）\n\n## 环境与工具备忘\n\n- 发图先复制 ~/Downloads/（桌面端对 /tmp 404）\n- 重启服务前必须 lsof 验证端口释放\n- …\n"
+  }
+}

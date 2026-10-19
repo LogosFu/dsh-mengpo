@@ -1,26 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#6D4BFF"/>
       <stop offset="1" stop-color="#E040FB"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.22" cy="0.12" r="0.95">
+    <radialGradient id="glow2" cx="0.22" cy="0.12" r="0.95">
       <stop offset="0" stop-color="#ffffff" stop-opacity="0.26"/>
       <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
-  <rect width="512" height="512" rx="120" fill="url(#glow)"/>
-  <!-- bowl body -->
-  <path d="M142 300 C142 300 156 396 256 396 C356 396 370 300 370 300 Z" fill="#fff"/>
-  <!-- rim -->
-  <rect x="126" y="282" width="260" height="26" rx="13" fill="#fff"/>
-  <!-- soup line -->
-  <path d="M150 322 C190 336 322 336 362 322" stroke="#C9BBFF" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.9"/>
-  <!-- rising memory constellation -->
-  <path d="M188 226 C214 200 230 194 256 190" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.9"/>
-  <path d="M256 190 C286 196 304 206 324 228" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.9"/>
-  <circle cx="188" cy="226" r="15" fill="#fff"/>
-  <circle cx="256" cy="190" r="22" fill="#fff"/>
-  <circle cx="324" cy="228" r="13" fill="#fff"/>
+  <rect width="512" height="512" rx="120" fill="url(#bg2)"/>
+  <rect width="512" height="512" rx="120" fill="url(#glow2)"/>
+  <!-- bowl -->
+  <path d="M138 292 C138 292 152 402 256 402 C360 402 374 292 374 292 Z" fill="#fff"/>
+  <rect x="122" y="274" width="268" height="28" rx="14" fill="#fff"/>
+  <!-- soup surface -->
+  <ellipse cx="256" cy="288" rx="110" ry="20" fill="#B7A5FB"/>
+  <!-- swirl: real spiral in the liquid -->
+  <path d="M256 288
+           C 268 288 276 283 276 277
+           C 276 267 262 262 252 262
+           C 236 262 224 269 224 281
+           C 224 297 244 304 264 304
+           C 296 304 318 293 318 281"
+        fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
+  <!-- steam wisps -->
+  <path d="M226 244 C214 216 236 202 228 176" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <path d="M290 246 C280 220 300 206 292 180" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <!-- memory dots -->
+  <circle cx="260" cy="146" r="26" fill="#fff"/>
+  <circle cx="212" cy="164" r="13" fill="#fff"/>
+  <circle cx="312" cy="168" r="12" fill="#fff"/>
 </svg>

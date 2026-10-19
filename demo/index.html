@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>梦婆·记忆 demo</title>
+    <style>
+      body { margin: 0; background: #f5f6f7; font-family: system-ui, -apple-system, sans-serif; }
+      #frame { width: 860px; margin: 24px auto; background: #fff; border: 1px solid #e5e6eb;
+               border-radius: 12px; padding: 20px 24px; box-sizing: border-box; }
+      #frame-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+      #frame-head img { width: 40px; height: 40px; border-radius: 10px; }
+      #frame-head b { font-size: 16px; }
+      #frame-head span { font-size: 12px; color: #8f959e; }
+    </style>
+  </head>
+  <body>
+    <div id="frame">
+      <div id="frame-head">
+        <img src="../icon.svg" alt="" />
+        <div><b>梦婆·记忆</b><div><span>DSH 记忆可视化管理插件</span></div></div>
+      </div>
+      <div id="root"></div>
+    </div>
+    <script src="./demo-dist/bundle.js"></script>
+  </body>
+</html>

@@ -6,10 +6,11 @@
 
 **DSH（DeepSeek Harness）本地记忆的可视化管理插件** —— 在「插件」页里查看、编辑、删除、禁用你的全局记忆与每一个项目的记忆。
 
-> 名字取自「**孟婆汤**」谐音：传说喝下便忘，而这个插件反其道而行 —— 把那碗汤端到你面前，让你看清自己攒下了什么、哪些该倒掉。图标就是那只碗，升起的是记忆。
+[![License](https://img.shields.io/badge/license-MIT-6D4BFF.svg)](LICENSE)
+[![npm](https://img.shields.io/npm/v/dsh-mengpo.svg)](https://www.npmjs.com/package/dsh-mengpo)
+[![Topic](https://img.shields.io/badge/topic-dsh--plugin-6D4BFF.svg)](https://github.com/topics/dsh-plugin)
 
-[![License](https://img.shields.io/badge/license-MIT-6D4BFF.svg)](#license)
-[![DSH](https://img.shields.io/badge/DSH-2.0.18--beta.1-E040FB.svg)](https://github.com/deepseek-ai/deepseek-harness)
+> 名字取自「**孟婆汤**」谐音：传说喝下便忘，而这个插件反其道而行 —— 把那碗汤端到你面前，让你看清自己攒下了什么、哪些该倒掉。图标就是那只碗：碗内是汤，升起的是记忆。
 
 </div>
 
@@ -17,44 +18,48 @@
 
 ## 它解决什么问题
 
-DSH 的记忆默认只有「写入」没有「界面」：
+DSH 的记忆默认只有「写入」没有「界面」：全局偏好写在 `~/.dsh-beta/AGENTS.md`，每个项目的经验/决策沉淀在 `<项目>/.dsh-project-memory/insights.json`。agent 一直在往里记（`save_lesson` / `remember` / 自动注入），但你**看不到自己攒了什么，也删不掉过时的条目**。梦婆把这个黑盒变成可浏览、可编辑的界面。
 
-- 全局偏好写在 `~/.dsh-beta/AGENTS.md`；
-- 每个项目的经验/决策写在 `<项目>/.dsh-project-memory/insights.json`。
+## 功能与界面
 
-agent 一直在往里沉淀（`save_lesson` / `remember` / 自动注入），但你**看不到自己攒了什么**、更删不掉过时的条目。梦婆把这个黑盒变成可浏览、可编辑的界面。
+### 工作区视图：全局记忆 + 项目记忆库总览
 
-## 功能
+一眼看到全局记忆（AGENTS.md）和所有项目记忆库：insight 数、最近更新时间；有目录无数据的标「无记忆文件」，坏 JSON 标「数据损坏」而不拖垮整页。
 
-- **全局记忆**：直接展示 `AGENTS.md` 内容（只读，避免误改共享文件）。
-- **项目记忆库**：自动发现所有带 `.dsh-project-memory/` 的项目，显示 insight 数、最近更新时间；有目录无数据的项目标「无记忆文件」，坏 JSON 标「数据损坏」而不拖垮整页。
-- **Insight 管理**：按 kind（lesson / decision / procedure / experience）分组；点开抽屉可
-  - **编辑**：标题、类型、范围、问题模式、解决方案、关联文件、触发条件
-  - **禁用 / 启用**：等价于 `draft: true|false`，禁用后 agent 不再把它当作有效记忆
-  - **删除**：二次确认，永久移除
-- **中文 / English** 双语文案。
+![工作区视图](docs/screenshots/01-workspace.png)
+
+### 项目视图：按类型分组的 insight 列表
+
+点任意项目进入。insight 按 kind 分组（教训 / 决策 / 流程 / 经验），标注作用域、命中次数；被禁用的条目置灰留存，防止旧坑回潮。
+
+![项目视图](docs/screenshots/02-project.png)
+
+### 详情抽屉：看全文，也能动手
+
+点任意一条 insight，右侧抽屉展示完整元信息（类型 / 范围 / 来源 / 置信度 / 命中次数 / 创建与更新时间）+ pattern / fix / 关联文件 / 触发条件全文。
+
+![详情抽屉](docs/screenshots/03-detail.png)
+
+### 编辑 / 禁用 / 删除
+
+抽屉底部三个操作：**编辑**（标题、类型、范围、pattern、fix、文件、trigger，保存即原子写回）、**禁用/启用**（等价 `draft: true|false`）、**删除**（二次确认，永久移除）。
+
+![编辑](docs/screenshots/04-edit.png)
 
 ## 安装
 
 ```bash
-# 从 NPM 安装（出现在 DSH 插件中心时用这个）
+# 从 NPM 安装（推荐；应用内「插件中心」一键装）
 dsh plugin --profile <your-profile> add dsh-mengpo
 
 # 或直接从本仓库源码安装
 dsh plugin --profile <your-profile> add github:LogosFu/dsh-mengpo
 ```
 
-> 桌面端的 profile 由 Electron 独占管理，CLI 会拒绝写入；请在界面里装：
+> 桌面端的 profile 由 Electron 独占管理（CLI 会拒绝写入），请在界面里装：
 > 侧边栏 **插件 → 添加插件 → 安装第三方插件**，填入 `dsh-mengpo`（或 GitHub 地址 / 本地目录）。
 
-装完重启 DSH，进入 **插件** 页 → 顶部 **内置插件配置** → 点「**梦婆·记忆**」卡片。
-
-## 使用
-
-1. 左侧栏 **插件** → **内置插件配置** → **梦婆·记忆**
-2. 「工作区」视图看全局记忆 + 全部项目记忆库列表
-3. 点任意项目 → 看该项目的 insights（按类型分组）
-4. 点任意一条 insight → 右侧抽屉 → 底部「编辑 / 禁用 / 删除」
+装完重启 DSH，进入 **插件** 页 → **内置插件配置** → 点「**梦婆·记忆**」卡片。
 
 ## 数据与权限
 
@@ -68,7 +73,7 @@ dsh plugin --profile <your-profile> add github:LogosFu/dsh-mengpo
 ## 兼容性
 
 - 已验证：DSH Desktop **2.0.18-beta.1**（macOS，`desktop` profile）
-- 依赖公开插件机制：`plugins.item` 设置卡 slot + 手写 Typert Remote 描述符（不引入 `@deepseek-ai/*` 运行时依赖）
+- 只用公开插件机制：`plugins.item` 设置卡 slot + 手写 Typert Remote 描述符（**不引入** `@deepseek-ai/*` 运行时依赖，零安装体积负担）
 - Node ≥ 22（宿主 runtime 提供）
 
 ## 开发
@@ -82,7 +87,7 @@ pnpm smoke      # 对真实 ~/.dsh-beta 只读冒烟：项目列表 + insight �
 pnpm typecheck
 ```
 
-架构：host 侧 cordis 插件直读 JSON 文件并经 `ctx.typert.register()` 暴露 `mengpo` namespace；client 侧用 `ctx.remote.$mount()` 挂载后在「插件」页注册卡片。详见 [docs/design.md](docs/design.md)。
+架构与已拍板决策见 [docs/design.md](docs/design.md)。
 
 ## 卸载
 
