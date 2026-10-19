@@ -1,0 +1,70 @@
+{
+  "name": "dsh-mengpo",
+  "version": "0.1.0",
+  "description": "梦婆·记忆 — DSH 记忆可视化/管理插件：右侧边栏查看全局与各项目记忆，支持编辑、删除、禁用 insight",
+  "icon": "icon.svg",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/host/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/host/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "dsh": ">=0.2.1-rc.2 <0.3.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-ui-session",
+        "@deepseek-ai/dsh-api-remotes"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "files": [
+    "icon.svg",
+    "locale/*.json",
+    "lib/*.js",
+    "lib/types/**/*.d.ts",
+    "cordis.patch.yml"
+  ],
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.types.json",
+    "test": "vitest run",
+    "spike": "node scripts/spike.mjs",
+    "smoke": "node scripts/smoke.mts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}

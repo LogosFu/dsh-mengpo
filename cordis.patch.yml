@@ -1,0 +1,5 @@
+# 梦婆·记忆 插件 bundle patch：向 profile roster 插入 host 侧插件行。
+# client 半侧由 dsh.client(platform: web) + exports["./client"] 自动编进 Web shell。
+- insert:
+    - id: mengpo
+      name: dsh-mengpo

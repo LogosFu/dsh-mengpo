@@ -1,0 +1,7 @@
+overrides:
+  rollup: 4.52.4
+  postcss: 8.4.49
+onlyBuiltDependencies:
+  - esbuild
+allowBuilds:
+  esbuild: true
