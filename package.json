@@ -1,7 +1,7 @@
 {
   "name": "dsh-mengpo",
   "version": "0.2.1",
-  "description": "梦婆·记忆 — DSH 本地记忆可视化管理插件：在「插件」页查看/编辑/删除/禁用全局记忆与各项目 insights",
+  "description": "梦婆·记忆（谐音「孟婆汤」）— DSH 本地记忆可视化管理插件：在「插件」页查看/编辑/删除/禁用全局记忆与各项目 insights",
   "icon": "icon.svg",
   "type": "module",
   "main": "lib/index.js",

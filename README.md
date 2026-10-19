@@ -6,6 +6,8 @@
 
 **DSH（DeepSeek Harness）本地记忆的可视化管理插件** —— 在「插件」页里查看、编辑、删除、禁用你的全局记忆与每一个项目的记忆。
 
+> 名字取自「**孟婆汤**」谐音：传说喝下便忘，而这个插件反其道而行 —— 把那碗汤端到你面前，让你看清自己攒下了什么、哪些该倒掉。图标就是那只碗，升起的是记忆。
+
 [![License](https://img.shields.io/badge/license-MIT-6D4BFF.svg)](#license)
 [![DSH](https://img.shields.io/badge/DSH-2.0.18--beta.1-E040FB.svg)](https://github.com/deepseek-ai/deepseek-harness)
 
